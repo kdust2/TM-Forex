@@ -388,42 +388,46 @@ Error generating stack: `+i.message+`
         }
 
         var toggleButton = header.querySelector("button");
+
+        function setMenu(open) {
+          if (open) {
+            header.setAttribute("data-tm-menu-open", "");
+          } else {
+            header.removeAttribute("data-tm-menu-open");
+          }
+          if (toggleButton) {
+            toggleButton.setAttribute("aria-expanded", String(open));
+          }
+        }
+
         if (toggleButton && !toggleButton.dataset.tmMobileMenuReady) {
           toggleButton.dataset.tmMobileMenuReady = "true";
           toggleButton.setAttribute("type", "button");
+          toggleButton.setAttribute("aria-label", "Toggle navigation");
+          toggleButton.setAttribute("aria-expanded", "false");
           toggleButton.addEventListener("click", function () {
-            var isMobile = window.innerWidth <= 767;
-            if (!isMobile) return;
-            var isOpen = toggleButton.getAttribute("aria-expanded") === "true";
-            toggleButton.setAttribute("aria-expanded", String(!isOpen));
-            desktopNav.style.display = isOpen ? "none" : "grid";
-            desktopNav.style.position = "absolute";
-            desktopNav.style.top = "calc(100% + 8px)";
-            desktopNav.style.right = "12px";
-            desktopNav.style.left = "12px";
-            desktopNav.style.zIndex = "60";
-            desktopNav.style.padding = "10px";
-            desktopNav.style.border = "1px solid rgba(92, 26, 42, 0.12)";
-            desktopNav.style.borderRadius = "18px";
-            desktopNav.style.background = "rgba(255, 255, 255, 0.98)";
-            desktopNav.style.boxShadow = "0 18px 46px rgba(92, 26, 42, 0.14)";
-            desktopNav.style.gridTemplateColumns = "1fr";
-            desktopNav.style.gap = "4px";
+            if (window.innerWidth > 767) return;
+            setMenu(!header.hasAttribute("data-tm-menu-open"));
+          });
+          desktopNav.addEventListener("click", function (event) {
+            if (event.target.closest("a")) setMenu(false);
           });
         }
 
-        if (window.innerWidth <= 767) {
-          desktopNav.style.display = "none";
-          desktopNav.style.position = "absolute";
-          desktopNav.style.top = "calc(100% + 8px)";
-          desktopNav.style.right = "12px";
-          desktopNav.style.left = "12px";
-          desktopNav.style.zIndex = "60";
-          desktopNav.style.gridTemplateColumns = "1fr";
-          desktopNav.style.gap = "4px";
-          if (toggleButton) {
-            toggleButton.setAttribute("aria-expanded", "false");
-          }
+        if (!window.tmMenuGlobalsBound) {
+          window.tmMenuGlobalsBound = true;
+          document.addEventListener("click", function (event) {
+            var currentHeader = root.querySelector("header");
+            if (currentHeader && !currentHeader.contains(event.target)) {
+              currentHeader.removeAttribute("data-tm-menu-open");
+            }
+          });
+          window.addEventListener("resize", function () {
+            var currentHeader = root.querySelector("header");
+            if (window.innerWidth > 767 && currentHeader) {
+              currentHeader.removeAttribute("data-tm-menu-open");
+            }
+          });
         }
       }
 

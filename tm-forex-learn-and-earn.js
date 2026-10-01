@@ -250,11 +250,28 @@
     });
   }
 
+  function setupMobileMenu() {
+    var menu = document.querySelector("details.tm-mobile-menu");
+    if (!menu || menu.dataset.tmMenuReady === "true") return;
+
+    menu.dataset.tmMenuReady = "true";
+    document.addEventListener("click", function (event) {
+      if (menu.open && !menu.contains(event.target)) menu.open = false;
+    });
+    menu.addEventListener("click", function (event) {
+      if (event.target.closest("nav a")) menu.open = false;
+    });
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 767) menu.open = false;
+    });
+  }
+
   function init() {
     var root = document.getElementById("root") || document.querySelector(".tm-page");
     if (!root) return;
 
     routeSectionLinks(root);
+    setupMobileMenu();
     addLiveClock(root);
     addScrollReveal(root);
     addContactMessageCopy(root);
