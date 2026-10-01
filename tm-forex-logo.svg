@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-labelledby="title desc">
+  <title id="title">TM Forex Learn and Earn</title>
+  <desc id="desc">Blue circular TM Forex badge with candlestick chart artwork.</desc>
+  <defs>
+    <path id="top-arc" d="M 72 202 A 128 128 0 0 1 328 202"/>
+    <path id="bottom-arc" d="M 78 205 A 122 122 0 0 0 322 205"/>
+  </defs>
+  <circle cx="200" cy="200" r="190" fill="#2674d2"/>
+  <circle cx="200" cy="200" r="180" fill="#0c2e58" stroke="#1a62b8" stroke-width="2"/>
+  <circle cx="200" cy="200" r="120" fill="none" stroke="#1c5da8" stroke-width="2"/>
+  <g fill="none" stroke-linecap="round">
+    <path d="M130 168v116" stroke="#1d6bc2" stroke-width="4"/>
+    <rect x="121" y="190" width="18" height="50" rx="2" fill="#2878d5"/>
+    <path d="M165 150v132" stroke="#4b91dc" stroke-width="4"/>
+    <rect x="156" y="174" width="18" height="68" rx="2" fill="#4d94df"/>
+    <path d="M200 119v148" stroke="#1d6bc2" stroke-width="4"/>
+    <rect x="191" y="142" width="18" height="88" rx="2" fill="#2675d1"/>
+    <path d="M235 149v130" stroke="#4b91dc" stroke-width="4"/>
+    <rect x="226" y="170" width="18" height="72" rx="2" fill="#4d94df"/>
+    <path d="M270 104v156" stroke="#1d6bc2" stroke-width="4"/>
+    <rect x="261" y="127" width="18" height="90" rx="2" fill="#2675d1"/>
+    <path d="M130 234l40-20 36 10 68-60" stroke="#8fc0fb" stroke-width="3"/>
+  </g>
+  <text fill="#f6f8fc" font-family="Georgia, 'Times New Roman', serif" font-size="31" font-weight="700" letter-spacing="6" text-anchor="middle">
+    <textPath href="#top-arc" startOffset="50%">TM FOREX</textPath>
+  </text>
+  <text fill="#f6f8fc" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="700" letter-spacing="4" text-anchor="middle">
+    <textPath href="#bottom-arc" startOffset="50%">LEARN &amp; EARN</textPath>
+  </text>
+</svg>
